@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Topic:</b>
+  <%= @subsubtopic.topic_id %>
+</p>
+
+<p>
+  <b>Subtopic:</b>
+  <%= @subsubtopic.subtopic_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @subsubtopic.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @subsubtopic.description %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%= @subsubtopic.rating %>
+</p>
+
+
+<%= link_to 'Edit', edit_subsubtopic_path(@subsubtopic) %> |
+<%= link_to 'Back', subsubtopics_path %>

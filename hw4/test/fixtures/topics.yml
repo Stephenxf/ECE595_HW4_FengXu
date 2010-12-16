@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  member_id: 1
+  evaluator_id: 1
+  title: MyString
+  description: MyString
+  rating: 1
+
+two:
+  member_id: 1
+  evaluator_id: 1
+  title: MyString
+  description: MyString
+  rating: 1

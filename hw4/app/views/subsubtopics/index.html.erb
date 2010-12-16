@@ -1,0 +1,31 @@
+<h1>Listing Subsubtopics</h1>
+
+<table>
+  <tr>
+    <th>Template_ID</th>
+    <th>Subtopic_ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Rating</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subsubtopics.each do |subsubtopic| %>
+  <tr>
+    <td><%= subsubtopic.topic_id %></td>
+    <td><%= subsubtopic.subtopic_id %></td>
+    <td><%= subsubtopic.title %></td>
+    <td><%= subsubtopic.description %></td>
+    <td><%= subsubtopic.rating %></td>
+    <td><%= link_to 'Show', subsubtopic %></td>
+    <td><%= link_to 'Edit', edit_subsubtopic_path(subsubtopic) %></td>
+    <td><%= link_to 'Destroy', subsubtopic, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subsubtopic', new_subsubtopic_path %>

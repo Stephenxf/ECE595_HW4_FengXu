@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Evaluation Form</h1><br />
+
+<%= form_for(@topic) do |f| %>
+  <div class="field">
+    <h2>
+      <%= f.label :member_id, "Member ID:" %>
+      <%= f.text_field :member_id %>
+    </h2>
+  </div>
+  <div class="field">
+    <h2>
+      <%= f.label :evaluator_id, "Evaluator ID:" %>
+      <%= f.text_field :evaluator_id %>
+    </h2>
+  </div><br />
+
+<table>
+  <tr>
+    <th><h2>Title</h2></th>
+    <th><h2>Description</h2></th>
+    <th><h2>Rating(5~1)</h2></th>
+  </tr>
+
+  <tr>
+    <td style="font-size:10.5pt;background:#FFDEAD"><b><%= @topic.title %></b></td>
+    <td style="font-size:10.5pt;background:#FFDEAD"><b><%= @topic.description %></b></td>
+    <td style="text-align:center;background:#FFDEAD"><b><%= f.select :rating, %w[1 2 3 4 5] %></b></td>
+  </tr>
+
+  <div_id="subtopics">
+    <% @topic.subtopics.each do |subtopic| %>
+      <%= f.fields_for :subtopics, subtopic do |subtopic_fields| %>
+        <% div_for subtopic do %>
+          <tr>
+          <td style="background:#fffddd"><b><%= h(subtopic.title) %></b></td>
+          <td style="background:#fffddd"><b><%= h(subtopic.description) %></b></td>
+          <td style="text-align:center;background:#fffddd"><%= subtopic_fields.select :rating, %w[1 2 3 4 5] %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    
+      <div_id="subsubtopics">
+        <% @topic.subsubtopics.each do |subsubtopic| %>
+          <%= f.fields_for :subsubtopics, subsubtopic do |subsubtopic_fields| %>
+            <% div_for subsubtopic do %>
+              <% if subsubtopic.subtopic_id == subtopic.id %>
+                <tr>
+                <td><%= h(subsubtopic.title) %></td>
+                <td><%= h(subsubtopic.description) %></td>
+                <td style="text-align:center"><%= subsubtopic_fields.select :rating, %w[1 2 3 4 5] %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</table>
+
+<p><%= f.submit "Submit Evaluation" %></p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>
